@@ -26,11 +26,15 @@ function App() {
       .then(retorno_convertido => setProdutos(retorno_convertido));
   }, []);
 
+  // * Obtendo os dados do formulario
+  const aoDigitar = (event) => {
+    setObjProduto({ ...objProduto, [event.target.name]: event.target.value })
+  }
+
   //* retorno
   return (
     <div>
-      <p>{JSON.stringify(objProduto)}</p>
-      <Formulario botao={btnCadastrar} />
+      <Formulario botao={btnCadastrar} eventoTeclado={aoDigitar} />
       <Tabela vetor={produtos} />
     </div>
   );
