@@ -43,7 +43,13 @@ function App() {
     })
       .then(retorno => retorno.json())
       .then(retorno_convertido => {
-        console.log(retorno_convertido)
+        if (retorno_convertido.mensagem !== undefined) {
+          alert(retorno_convertido.mensagem)
+        } else {
+          //* passa o produto cadastrado para a lista de produtos
+          setProdutos([...produtos, retorno_convertido])
+          alert('Produto cadastrado com sucesso!')
+        }
       })
   }
 
