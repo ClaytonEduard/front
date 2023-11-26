@@ -31,10 +31,28 @@ function App() {
     setObjProduto({ ...objProduto, [event.target.name]: event.target.value })
   }
 
+  //* cadastrar produto
+  const cadastrar = () => {
+    fetch("http://localhost:8080/cadastrar", {
+      method: 'post',
+      body: JSON.stringify(objProduto),
+      headers: {
+        'Content-type': 'application/json',
+        'Accept': 'application/json'
+      }
+    })
+      .then(retorno => retorno.json())
+      .then(retorno_convertido => {
+        console.log(retorno_convertido)
+      })
+  }
+
+
+
   //* retorno
   return (
     <div>
-      <Formulario botao={btnCadastrar} eventoTeclado={aoDigitar} />
+      <Formulario botao={btnCadastrar} eventoTeclado={aoDigitar} cadastrar={cadastrar} />
       <Tabela vetor={produtos} />
     </div>
   );
